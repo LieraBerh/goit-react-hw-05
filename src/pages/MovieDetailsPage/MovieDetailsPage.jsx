@@ -1,4 +1,4 @@
-import { useParams, Link, Outlet } from "react-router-dom";
+import { useParams, Link, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMovie } from "../../services/moviesApi";
 
@@ -6,6 +6,7 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState("");
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +20,12 @@ const MovieDetailsPage = () => {
     fetchData();
   }, [movieId]);
 
+  const goBack = location.state ?? "/movies";
+
   return (
     <>
       <div>
+        <Link to={goBack}>Go back</Link>
         <div>
           <img
             src={

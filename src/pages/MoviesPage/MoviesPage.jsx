@@ -18,12 +18,13 @@ const MoviesPage = () => {
       });
       return;
     }
-
     try {
       const data = await searchMovie(searchTerm);
       setFilteredMovies(data);
     } catch (error) {
       setError(error.message);
+    } finally {
+      evt.target.reset();
     }
   };
 
@@ -41,7 +42,6 @@ const MoviesPage = () => {
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
-          value={searchTerm}
           onChange={handleChange}
         />
         <button type="submit">Search</button>

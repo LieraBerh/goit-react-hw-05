@@ -21,6 +21,7 @@ const MovieCast = () => {
 
   return (
     <>
+      {actors?.length === 0 && <p>No info</p>}
       <ul>
         {actors?.map((actor) => (
           <li key={actor?.id}>
