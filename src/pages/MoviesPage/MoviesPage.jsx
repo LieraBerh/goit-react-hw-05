@@ -2,11 +2,14 @@ import toast, { Toaster } from "react-hot-toast";
 import { searchMovie } from "../../services/moviesApi";
 import { useState } from "react";
 import MovieList from "../../components/MovieList/MovieList";
+import { useSearchParams } from "react-router-dom";
 
 const MoviesPage = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") ?? "";
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -21,10 +24,9 @@ const MoviesPage = () => {
     try {
       const data = await searchMovie(searchTerm);
       setFilteredMovies(data);
+      setSearchParams({ query: searchTerm });
     } catch (error) {
       setError(error.message);
-    } finally {
-      evt.target.reset();
     }
   };
 
@@ -38,11 +40,12 @@ const MoviesPage = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="movie"
+          name="query"
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
           onChange={handleChange}
+          value={searchTerm}
         />
         <button type="submit">Search</button>
       </form>
@@ -51,4 +54,5 @@ const MoviesPage = () => {
     </>
   );
 };
+
 export default MoviesPage;
