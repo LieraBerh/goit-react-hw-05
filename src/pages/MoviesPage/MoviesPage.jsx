@@ -1,6 +1,6 @@
 import toast, { Toaster } from "react-hot-toast";
 import { searchMovie } from "../../services/moviesApi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MovieList from "../../components/MovieList/MovieList";
 import { useSearchParams } from "react-router-dom";
 
@@ -10,6 +10,21 @@ const MoviesPage = () => {
   const [error, setError] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query") ?? "";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (query) {
+        try {
+          const data = await searchMovie(query);
+          setFilteredMovies(data);
+        } catch (error) {
+          setError(error.message);
+        }
+      }
+    };
+
+    fetchData();
+  }, [query]);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
