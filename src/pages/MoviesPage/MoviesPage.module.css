@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.input {
+  height: 40px;
+  padding: 10px;
+  border: 1px solid rgb(222, 219, 219);
+  border-radius: 5px;
+}
+.button {
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d169e1;
+  color: aliceblue;
+  cursor: pointer;
+  transition: background-color 250ms ease-in-out;
+}
+.button:hover {
+  background-color: rgb(128, 60, 216);
+  color: aliceblue;
+}

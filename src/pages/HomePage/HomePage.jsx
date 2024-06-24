@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { fetchTrendingMovies } from "../../services/moviesApi";
 import MovieList from "../../components/MovieList/MovieList";
+import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [error, setError] = useState("");
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +22,9 @@ const HomePage = () => {
 
   return (
     <div>
-      {trendingMovies.length > 0 && <MovieList movies={trendingMovies} />}
+      {trendingMovies.length > 0 && (
+        <MovieList movies={trendingMovies} location={location} />
+      )}
       {error && <p>{error}</p>}
     </div>
   );

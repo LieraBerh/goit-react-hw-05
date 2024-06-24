@@ -1,0 +1,24 @@
+.header {
+  background-color: #d169e1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.list {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+.link {
+  text-decoration: none;
+  color: aliceblue;
+  transition: color 250ms ease-in-out;
+}
+.link:hover {
+  color: rgb(128, 60, 216);
+}
+.active {
+  text-decoration: underline;
+}

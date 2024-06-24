@@ -1,0 +1,32 @@
+.movie_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.movie_list_item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+  height: 265px;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background: url(https://png.pngtree.com/background/20220716/original/pngtree-film-festival-retro-style-film-poster-picture-image_1638286.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  box-shadow: 1px 1px 15px 1px rgb(134, 128, 128);
+  transition: box-shadow 250ms ease-in-out, text-decoration 250ms ease-in-out;
+}
+.movie_list_item:hover {
+  box-shadow: 1px 1px 15px 1px rgb(0, 0, 0);
+  text-decoration: underline;
+}

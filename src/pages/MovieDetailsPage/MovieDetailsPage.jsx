@@ -1,5 +1,5 @@
 import { useParams, Link, Outlet, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { fetchMovie } from "../../services/moviesApi";
 
 const MovieDetailsPage = () => {
@@ -20,12 +20,12 @@ const MovieDetailsPage = () => {
     fetchData();
   }, [movieId]);
 
-  const goBack = location.state ?? "/movies";
+  const goBack = useRef(location.state || "/movies");
 
   return (
     <>
       <div>
-        <Link to={goBack}>Go back</Link>
+        <Link to={goBack.current}>Go back</Link>
         <div>
           <img
             src={
@@ -57,7 +57,10 @@ const MovieDetailsPage = () => {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
+
       {error && <p>{error}</p>}
     </>
   );
