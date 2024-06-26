@@ -25,3 +25,12 @@ img {
   display: block;
   max-width: 100%;
 }
+.error {
+  text-align: center;
+}
+.not_found_img {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

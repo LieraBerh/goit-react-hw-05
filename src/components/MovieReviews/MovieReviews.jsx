@@ -33,7 +33,7 @@ const MovieReviews = () => {
           ))}
         </ul>
       )}
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };

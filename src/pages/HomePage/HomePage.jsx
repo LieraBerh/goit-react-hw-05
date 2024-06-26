@@ -25,7 +25,7 @@ const HomePage = () => {
       {trendingMovies.length > 0 && (
         <MovieList movies={trendingMovies} location={location} />
       )}
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };
