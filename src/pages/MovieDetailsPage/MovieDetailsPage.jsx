@@ -1,5 +1,6 @@
 import { useParams, Link, Outlet, useLocation } from "react-router-dom";
 import { Suspense, useEffect, useRef, useState } from "react";
+import s from "./MovieDetailsPage.module.css";
 import { fetchMovie } from "../../services/moviesApi";
 
 const MovieDetailsPage = () => {
@@ -25,8 +26,10 @@ const MovieDetailsPage = () => {
   return (
     <>
       <div>
-        <Link to={goBack.current}>Go back</Link>
-        <div>
+        <Link to={goBack.current} className={s.go_back_btn}>
+          Go back
+        </Link>
+        <div className={s.poster_wrapper}>
           <img
             src={
               movie && movie.backdrop_path
@@ -34,33 +37,41 @@ const MovieDetailsPage = () => {
                 : "https://via.placeholder.com/500x281"
             }
             alt={movie?.title}
+            className={s.movie_poster}
           />
         </div>
-        <div>
-          <h1>{movie?.title}</h1>
-          <p>User Score: {((movie?.vote_average / 10) * 100).toFixed()}% </p>
+        <div className={s.text_wrapper}>
+          <h1 className={s.movie_title}>{movie?.title}</h1>
+          <p className={s.movie_score}>
+            User Score: {((movie?.vote_average / 10) * 100).toFixed()}%{" "}
+          </p>
           <h3>Overview</h3>
           <p>{movie?.overview}</p>
           <h3>Genres</h3>
-          <ul>
+          <ul className={s.genres_list}>
             {movie?.genres.map((genre) => (
-              <li key={genre.id}>{genre.name}</li>
+              <li key={genre.id} className={s.genres_item}>
+                {genre.name}
+              </li>
             ))}
           </ul>
         </div>
       </div>
-      <ul>
+      <ul className={s.links}>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link to="cast" className={s.link}>
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link to="reviews" className={s.link}>
+            Reviews
+          </Link>
         </li>
       </ul>
       <Suspense>
         <Outlet />
       </Suspense>
-
       {error && <p>{error}</p>}
     </>
   );
